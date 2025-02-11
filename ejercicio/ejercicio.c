@@ -31,40 +31,48 @@ void push(Pila *pila, char valor, int indice)
    if(pila->tope == MAX - 1) 
    {
       printf("Error: La pila está llena\n");
-      return;
+      
+   }else
+   {
+        pila->elementos[++pila->tope] = valor;
+        pila->indices[pila->tope] = indice;
    }
-   pila->elementos[++pila->tope] = valor;
-   pila->indices[pila->tope] = indice;
 }
  
 char pop(Pila *pila, int *indice) 
 {
+    char retorno;
    if (estaVacia(pila)) 
    {
-       return '\0';  
+       retorno= '\0';  
+   }else{
+        *indice = pila->indices[pila->tope];
+        retorno= pila->elementos[pila->tope--];
    }
-   *indice = pila->indices[pila->tope];
-   return pila->elementos[pila->tope--];
+   return retorno;
 }
  
 char peek(Pila *pila) 
 {
+    char retorno;
     if (estaVacia(pila)) 
     {
-        return '\0';
+        retorno= '\0';
+    }else{
+    retorno pila->elementos[pila->tope];
     }
-    return pila->elementos[pila->tope];
 }
  
 
 void verificarBalanceo(const char *nombreArchivo) 
 {
     FILE *archivo = fopen(nombreArchivo, "w");
-    if (!archivo) {
-        printf("No se pudo abrir el archivo.\n");
-        return;
-    }
- 
+    if (!archivo) 
+    {
+        perror("No se pudo abrir el archivo.\n");
+    }else
+    {
+        
     Pila pila;
     inicializarPila(&pila);
  
@@ -103,6 +111,8 @@ void verificarBalanceo(const char *nombreArchivo)
     }
  
     fclose(archivo);
+    }
+ 
 }
  
 
