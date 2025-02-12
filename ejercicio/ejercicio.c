@@ -9,12 +9,6 @@
 #include <string.h>
 #define MAX 100  
  
-typedef struct pila 
-{
-    char elementos[MAX];
-    int indices[MAX]; 
-    int tope;
-} Pila;
 
 
 void inicializarPila(Pila *pila) 
@@ -34,7 +28,8 @@ void push(Pila *pila, char valor, int indice)
       printf("Error: La pila está llena\n");
    }else
    {
-        pila->elementos[pila->tope++] = valor;
+        pila->tope++;
+        pila->elementos[pila->tope] = valor;
         pila->indices[pila->tope] = indice;
    }
 }
@@ -47,8 +42,9 @@ char pop(Pila *pila, int *indice)
        retorno= '\0';  
    }else{
     pila->tope++;
-    pila->elementos[pila->tope] = valor;
-    pila->indices[pila->tope] = indice;
+        *indice = pila->indices[pila->tope];
+        retorno= pila->elementos[pila->tope];
+        pila->tope--; 
    }
    return retorno;
 }
@@ -77,7 +73,7 @@ void verificarBalanceo(const char *nombreArchivo)
         
     Pila pila;
     inicializarPila(&pila);
- 
+
     char c;
     int posicion = 0;
  
