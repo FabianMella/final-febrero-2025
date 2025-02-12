@@ -14,7 +14,8 @@ typedef struct pila
     char elementos[MAX];
     int indices[MAX]; 
     int tope;
-}
+} Pila;
+
 
 void inicializarPila(Pila *pila) 
 {
@@ -31,10 +32,9 @@ void push(Pila *pila, char valor, int indice)
    if(pila->tope == MAX - 1) 
    {
       printf("Error: La pila está llena\n");
-      
    }else
    {
-        pila->elementos[++pila->tope] = valor;
+        pila->elementos[pila->tope++] = valor;
         pila->indices[pila->tope] = indice;
    }
 }
@@ -46,8 +46,9 @@ char pop(Pila *pila, int *indice)
    {
        retorno= '\0';  
    }else{
-        *indice = pila->indices[pila->tope];
-        retorno= pila->elementos[pila->tope--];
+    pila->tope++;
+    pila->elementos[pila->tope] = valor;
+    pila->indices[pila->tope] = indice;
    }
    return retorno;
 }
@@ -59,14 +60,15 @@ char peek(Pila *pila)
     {
         retorno= '\0';
     }else{
-    retorno pila->elementos[pila->tope];
+    retorno =  pila->elementos[pila->tope];
     }
+    return retorno;
 }
  
 
 void verificarBalanceo(const char *nombreArchivo) 
 {
-    FILE *archivo = fopen(nombreArchivo, "w");
+    FILE *archivo = fopen(nombreArchivo, "r");
     if (!archivo) 
     {
         perror("No se pudo abrir el archivo.\n");
