@@ -1,116 +1,43 @@
 /*
  * Programación 1 - Ingenieria en Computación - UNRN Andina
  */
- 
+#include "libreria.h"
+
 #include "ejercicio.h"
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define MAX 100  
- 
 
-
-void inicializarPila(Pila *pila) 
+void verificarBalanceo(char indice,int ultimo) 
 {
-   pila->tope = -1;
-}
- 
-int estaVacia(Pila *pila) 
-{
-   return pila->tope == -1;
-}
-
-void push(Pila *pila, char valor, int indice) 
-{
-   if(pila->tope == MAX - 1) 
-   {
-      printf("Error: La pila está llena\n");
-   }else
-   {
-        pila->tope++;
-        pila->elementos[pila->tope] = valor;
-        pila->indices[pila->tope] = indice;
-   }
-}
- 
-char pop(Pila *pila, int *indice) 
-{
-    char retorno;
-   if (estaVacia(pila)) 
-   {
-       retorno= '\0';  
-   }else{
-    pila->tope++;
-        *indice = pila->indices[pila->tope];
-        retorno= pila->elementos[pila->tope];
-        pila->tope--; 
-   }
-   return retorno;
-}
- 
-char peek(Pila *pila) 
-{
-    char retorno;
-    if (estaVacia(pila)) 
-    {
-        retorno= '\0';
-    }else{
-    retorno =  pila->elementos[pila->tope];
-    }
-    return retorno;
-}
- 
-
-void verificarBalanceo(const char *nombreArchivo) 
-{
-    FILE *archivo = fopen(nombreArchivo, "r");
+    FILE *archivo = fopen("archivo.txt", "r");
+    char caracter;
+    int posicion=-1;
     if (!archivo) 
     {
         perror("No se pudo abrir el archivo.\n");
     }else
-    {
+    { 
+        pila_t* pila;
+        inicializarPila(pila);
         
-    Pila pila;
-    inicializarPila(&pila);
-
-    char c;
-    int posicion = 0;
- 
-    while ((c = fgetc(archivo)) != EOF) 
-    {
-        posicion++;
-        
-        if (c == '(' || c == '{' || c == '[') 
-        {
-            push(&pila, c, posicion);
-        } else if (c == ')' || c == '}' || c == ']') 
-        {
-            int indice;
-            char ultimo = pop(&pila, &indice);
-            if ((c == ')' && ultimo != '(') || (c == '}' && ultimo != '{') || (c == ']' && ultimo != '[')) 
+            while((caracter = fgetc(archivo)) != EOF) 
             {
-                printf("Error de balanceo en la posicion %d: '%c' no tiene pareja.\n", posicion, c);
-                fclose(archivo);
-                return;
+                if (caracter == '(' || caracter == '{' || caracter == '[') 
+                {
+                    push(pila, caracter, posicion);
+                } else if (caracter == ')' || caracter == '}' || caracter == ']') 
+                {
+                    pop(pila, posicion);
+                }
+                posicion++;
+                indice=caracter;
+                ultimo=posicion;
             }
-        }
-     }
- 
-    if(!estaVacia(&pila)) 
-    {
-        int indice;
-        char ultimo = pop(&pila, &indice);
-         
-        printf("Error de balanceo: '%c' en la posicion %d no tiene cierre\n", ultimo, indice);
-    }else
-    {
-        printf("Los símbolos están balanceados.\n");
+    
     }
- 
     fclose(archivo);
-    }
- 
 }
  
 

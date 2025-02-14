@@ -7,14 +7,26 @@
 #include <stdbool.h>
 #include "ejercicio.h"
 #include "ejercicio.c"
+#include "libreria.c"
 
 
+int main()
+{
+    
+    pila_t *pila;
+    char indice;
+    int ultimo;
 
-int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        printf("Uso: %s <nombre_del_archivo>\n", argv[0]);
-        return 1;
+    
+    verificarBalanceo(indice,ultimo);
+
+    if(!estaVacia(pila)) 
+    {
+        printf("Error de balanceo: '%c' en la posicion %d no tiene cierre\n", indice, ultimo);
     }
-    verificarBalanceo(argv[1]);
+    else
+    {
+        printf("Los símbolos están balanceados.\n");
+    }
     return 0;
 }
