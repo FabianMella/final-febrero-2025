@@ -9,6 +9,7 @@
 
 void test_inicializarPila(pila_t* pila) 
 {
+    printf("Test inicialización\n");
 
     inicializarPila(pila);
     assert(pila->inicio == NULL && pila->tope == -1);
@@ -16,6 +17,8 @@ void test_inicializarPila(pila_t* pila)
 
 void test_estaVacia(pila_t* pila) 
 {
+    printf("Test esta vacia\n");
+
     
     inicializarPila(pila);
     assert(estaVacia(pila) == -1);
@@ -25,7 +28,8 @@ void test_estaVacia(pila_t* pila)
 
 void test_push(pila_t* pila) 
 {
-    
+    printf("Test push\n");
+
     inicializarPila(pila);
     push(pila, 'A', 0);
     assert(!estaVacia(pila));
@@ -35,6 +39,8 @@ void test_push(pila_t* pila)
 void test_pop(pila_t* pila) 
 {
     
+    printf("Test pop\n");
+
     inicializarPila(pila);
     push(pila, 'A', 0);
     pop(pila,0);
