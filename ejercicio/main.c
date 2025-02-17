@@ -2,31 +2,32 @@
  * Programación 1 - Ingenieria en Computación - UNRN Andina
  */
 
-#include <assert.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include "ejercicio.h"
-#include "ejercicio.c"
-#include "libreria.c"
-
+#include "libreria.h"
 
 int main()
 {
-    
-    pila_t *pila;
-    char indice;
-    int ultimo;
+    pila_t* pila = (pila_t*)malloc(sizeof(pila));
+   
 
-    
-    verificarBalanceo(indice,ultimo);
-
-    if(!estaVacia(pila)) 
+    if(verificarBalanceo(pila)) 
     {
-        printf("Error de balanceo: '%c' en la posicion %d no tiene cierre\n", indice, ultimo);
+        printf("estan balanceados");
     }
     else
     {
-        printf("Los símbolos están balanceados.\n");
+        printf("Error de balanceo");
+        printf("Elementos de la pila (de arriba hacia abajo):\n");
+
+        Nodo_t *actual = pila->inicio;
+        while (actual != NULL) 
+        {
+            printf("error de %c en posicion: %d\n",actual->dato, actual->posicion); 
+            actual = actual->siguiente;
+        }
     }
     return 0;
 }

@@ -4,8 +4,12 @@
 
 #ifndef EJERCICIO_H
 #define EJERCICIO_H
+#include "libreria.h"
+#include <stdbool.h>
 
-void verificarBalanceo(char indice,int ultimo);
+
+
+bool verificarBalanceo(pila_t* pila);
 /*
 esta función verifica si los símbolos de apertura y cierre (paréntesis, llaves y corchetes) en un archivo esta correctamente balanceados.
 
