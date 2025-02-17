@@ -11,7 +11,7 @@ typedef struct Nodo
     struct Nodo* siguiente;
 }Nodo_t;
 
-typedef struct 
+typedef struct
 {
     Nodo_t* inicio;
     int tope;
@@ -38,7 +38,7 @@ esta funcion verifica si la pila esta vacia
 @post devuelve true o false dependiendo de si esta vacia o no
 */
 
-void push(pila_t *pila, char valor, int posicion);
+void push(pila_t *pila, char valor);
 /*
 esta funcion agraga un elemento en la cima del stack
 
@@ -51,11 +51,10 @@ esta funcion agraga un elemento en la cima del stack
 
 */
 
-void pop(pila_t *pila, int posicion);
+void pop(pila_t *pila);
 /*
 esta funcion elimina un elemento del stack
 @param pila es la pila a la que se le va quitar el elemento de la cima
-@param indice numero entero que indica la posicion del elemento
 @return devuelve la pila con el elemento eliminado
 @pre tiene que existir el stack con elementos
 @post el stack con su modificacion

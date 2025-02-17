@@ -9,47 +9,51 @@
 
 void test_inicializarPila(pila_t* pila) 
 {
-
-    inicializarPila(pila);
     assert(pila->inicio == NULL && pila->tope == -1);
 }
 
 void test_estaVacia(pila_t* pila) 
 {
-    
-    inicializarPila(pila);
-    assert(estaVacia(pila) == -1);
-    push(pila, 'A', 0);
+    assert(estaVacia(pila));
+    push(pila, 'A');
     assert(!estaVacia(pila));
+    pop(pila);
 }
 
 void test_push(pila_t* pila) 
 {
-    
-    inicializarPila(pila);
-    push(pila, 'A', 0);
+    push(pila, 'A');
     assert(!estaVacia(pila));
-    assert(pila->tope == 0);
+    pop(pila);
+    assert(pila->tope == -1);
 }
 
 void test_pop(pila_t* pila) 
 {
-    
-    inicializarPila(pila);
-    push(pila, 'A', 0);
-    pop(pila,0);
+    push(pila, 'A');
+    pop(pila);
     assert(estaVacia(pila));
 }
 
 int main() 
 {
-    pila_t* pila;
-    printf("comienzo de prueba");
-    test_inicializarPila(pila);
-    test_estaVacia(pila);
-    test_push(pila);
-    test_pop(pila);
+    pila_t* pila = (pila_t*)malloc(sizeof(pila_t));
+    if (pila == NULL) 
+    {
+        printf("Error al asignar memoria.\n");
+    }else
+    {
+        inicializarPila(pila);
+        printf("comienzo de prueba");
+        test_inicializarPila(pila);
 
-    printf("fin");
+        
+        test_estaVacia(pila);
+        test_push(pila);
+        test_pop(pila);
+    
+        printf("\nfin");
+    }
+   
     return 0;
 }
