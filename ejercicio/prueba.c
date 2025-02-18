@@ -6,11 +6,40 @@
 #include "ejercicio.h"
 #include <assert.h>
 #include <stdio.h>
-#define MAX 100
+#include <stdlib.h>
+void test_verificarBalanceo() 
+    {
+        pila_t *pila= (pila_t*)malloc(sizeof(pila_t));
+    
+        // caso balanceado
+        FILE *archivo = fopen("archivo.txt", "w");
+        fprintf(archivo, "()[]{}");
+        fclose(archivo);
+        assert(verificarBalanceo(pila) == true);
+    
+        //caso balanceado
+        archivo = fopen("archivo.txt", "w");
+        fprintf(archivo, "([)]");
+        fclose(archivo);
+        assert(verificarBalanceo(pila) == false);
+    
+        // caso desbalanceado
+        archivo = fopen("archivo.txt", "w");
+        fprintf(archivo, "({[");
+        fclose(archivo);
+        assert(verificarBalanceo(pila) == false);
+    
+        // archivo vacio
+        archivo = fopen("archivo.txt", "w");
+        fclose(archivo);
+        assert(verificarBalanceo(pila) == true);
+    
+        printf("Todas las pruebas pasaron correctamente.\n");
+    }
 
 int main() 
 {
-    
+    test_verificarBalanceo();
 
     return 0;
 }

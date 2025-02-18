@@ -27,7 +27,7 @@ bool verificarBalanceo(pila_t* pila)
                 push(pila, caracter,posicion);
                 posicion++;
             } 
-            else if (caracter == ')' || caracter == ']' || caracter == "}") 
+            else if (caracter == ')' || caracter == ']' || caracter == '}') 
             {
                 pop(pila);
                 posicion++; 

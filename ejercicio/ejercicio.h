@@ -11,12 +11,12 @@
 
 bool verificarBalanceo(pila_t* pila);
 /*
-esta función verifica si los símbolos de apertura y cierre (paréntesis, llaves y corchetes) en un archivo esta correctamente balanceados.
+esta función verifica si el archivo.txt esta balanceado
 
-@param nombreArchivo es el archivo que se verificara
-@return no tiene debido a que es un void
-@pre la pila debe estar inicializada antes de la funcion
-@post Si la pila no estaba vacia, la funcion retornara el valor del elemento en la cima de la pila sin modificar la pila.
+@param pila es el stack que va ayudar a verificar si esta balanceado el archivo 
+@return true si esta balanceado y false si no lo esta
+@pre la pila debe estar inicializada antes de la funcion y el archivo debe existir
+@post true o un false dependiendo del funcionamiento del archivo
 */
 
 #endif
