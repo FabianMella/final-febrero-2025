@@ -7,10 +7,9 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-void test_verificarBalanceo() 
+void test_verificarBalanceo(pila_t *pila) 
     {
-        pila_t *pila= (pila_t*)malloc(sizeof(pila_t));
-    
+        
         // caso balanceado
         FILE *archivo = fopen("archivo.txt", "w");
         fprintf(archivo, "()[]{}");
@@ -33,13 +32,30 @@ void test_verificarBalanceo()
         archivo = fopen("archivo.txt", "w");
         fclose(archivo);
         assert(verificarBalanceo(pila) == true);
-    
+        
+        
         printf("Todas las pruebas pasaron correctamente.\n");
     }
 
+void test_liberar(pila_t *pila)
+{
+    libera_pila(pila);
+    if(estaVacia(pila))
+    {
+        printf("perfeccion");
+    }else
+    {
+        printf("error al liberar");
+    }
+}
 int main() 
 {
-    test_verificarBalanceo();
+    pila_t *pila= (pila_t*)malloc(sizeof(pila_t));
+    printf("Comenzando...\n");
 
+    test_verificarBalanceo(pila);
+    test_liberar(pila);
+    free(pila);
+    printf("\nfin");
     return 0;
 }
