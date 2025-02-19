@@ -30,5 +30,8 @@ int main()
             actual = actual->siguiente;
         }
     }
+    libera_pila(pila);
+    free(pila);
+    
     return 0;
 }

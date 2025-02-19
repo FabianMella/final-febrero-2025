@@ -19,4 +19,15 @@ esta función verifica si el archivo.txt esta balanceado
 @post true o un false dependiendo del funcionamiento del archivo
 */
 
+
+void libera_pila(pila_t *pila);
+/*
+esta funcion libera todos los nodos del stack
+
+@param pila es el stack al cual se le va liberar los nodos
+@return no tiene debido a que es un void
+@pre tiene que existir una pila
+@post la pila quedara vacia
+*/
+
 #endif

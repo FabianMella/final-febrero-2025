@@ -43,3 +43,29 @@ bool verificarBalanceo(pila_t* pila)
     fclose(archivo);
     return estaVacia(pila);  
 }
+
+
+void libera_pila(pila_t *pila)
+{
+    if(pila->inicio != NULL)
+    {
+        while(pila->tope > -1)
+        {
+            Nodo_t *anterior = NULL;
+            Nodo_t *temp=pila->inicio;
+            while (temp != NULL) 
+            {
+                anterior = temp;
+                temp = temp->siguiente;
+            }
+            if (anterior != NULL)  
+            {
+                anterior->siguiente = NULL; // Desconectar el ultimo nodo
+            }
+            free(temp);
+            pila->tope--;
+        }
+    }
+    
+}    
+    

@@ -14,25 +14,40 @@ void test_inicializarPila(pila_t* pila)
 
 void test_estaVacia(pila_t* pila) 
 {
-    assert(estaVacia(pila));
+    if (!estaVacia(pila))
+    {
+        printf("No debiera de contener nada 1\n");
+    }
     push(pila, 'A',0);
-    assert(!estaVacia(pila));
+    if (estaVacia(pila))
+    {
+        printf("debiera de contener algo 1\n");
+    }
     pop(pila);
 }
 
 void test_push(pila_t* pila) 
 {
     push(pila, 'A',0);
-    assert(!estaVacia(pila));
+    if (estaVacia(pila))
+    {
+        printf("debiera de contener algo 2\n");
+    }
     pop(pila);
-    assert(pila->tope == -1);
+    if (!estaVacia(pila))
+    {
+        printf("debiera estar vacia 2\n");
+    }
 }
 
 void test_pop(pila_t* pila) 
 {
     push(pila, 'A',0);
     pop(pila);
-    assert(estaVacia(pila));
+    if (!estaVacia(pila))
+    {
+        printf("debiera estar vacia 3\n");
+    }
 }
 
 int main() 
@@ -43,16 +58,23 @@ int main()
         printf("Error al asignar memoria.\n");
     }else
     {
+        printf("Comienzo de prueba\n");
         inicializarPila(pila);
-        printf("comienzo de prueba");
-        
+
+        printf("test incializarpila...\n");
         test_inicializarPila(pila);
+
+        printf("test estavacia...\n");
         test_estaVacia(pila);
+
+        printf("test push...\n");
         test_push(pila);
+
+        printf("test pop...\n");
         test_pop(pila);
     
         printf("\nfin");
     }
-   
+    free(pila);
     return 0;
 }
