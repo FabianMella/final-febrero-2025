@@ -8,6 +8,7 @@
 typedef struct Nodo
 {
     char dato;
+    int posicion;
     struct Nodo* siguiente;
 }Nodo_t;
 
@@ -38,13 +39,13 @@ esta funcion verifica si la pila esta vacia
 @post devuelve true o false dependiendo de si esta vacia o no
 */
 
-void push(pila_t *pila, char valor);
+void push(pila_t *pila, char valor,int posicion);
 /*
 esta funcion agraga un elemento en la cima del stack
 
 @param pila es la pila a la que se le va agregar el elemento
-@param valor es el valor a añadir en la pila
-@param indice numero entero que indica la posicion del elemento
+@param valor es la indicacion del caaracter que se abre como '(','{' o '['
+@param posicion numero entero que indica donde se abrio el parentesis,corchete o llave
 @return sin retorno
 @pre tiene que exitir la pila
 @post el elemento fue agregado a la cima de la pila

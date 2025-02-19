@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "libreria.c"
+
 
 bool verificarBalanceo(pila_t* pila) 
 {

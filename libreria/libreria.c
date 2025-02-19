@@ -18,7 +18,7 @@ int estaVacia(pila_t *pila)
    return pila->tope == -1;
 }
 
-void push(pila_t *pila, char valor) 
+void push(pila_t *pila, char valor,int posicion) 
 {
 
     Nodo_t* nuevonodo = (Nodo_t*)malloc(sizeof(Nodo_t));
@@ -31,7 +31,7 @@ void push(pila_t *pila, char valor)
     nuevonodo->dato = valor;
     nuevonodo->siguiente = pila->inicio; // Insertar al inicio de la pila
     pila->inicio = nuevonodo;
-    
+    nuevonodo->posicion=posicion;
     pila->tope++;
 }
  
