@@ -14,24 +14,24 @@ void test_verificarBalanceo(pila_t *pila)
         FILE *archivo = fopen("archivo.txt", "w");
         fprintf(archivo, "()[]{}");
         fclose(archivo);
-        assert(verificarBalanceo(pila) == true);
+        assert(verificarBalanceo(pila));
     
         //caso balanceado
         archivo = fopen("archivo.txt", "w");
         fprintf(archivo, "([)]");
         fclose(archivo);
-        assert(verificarBalanceo(pila) == false);
+        assert(!verificarBalanceo(pila));
     
         // caso desbalanceado
         archivo = fopen("archivo.txt", "w");
         fprintf(archivo, "({[");
         fclose(archivo);
-        assert(verificarBalanceo(pila) == false);
+        assert(!verificarBalanceo(pila));
     
         // archivo vacio
         archivo = fopen("archivo.txt", "w");
         fclose(archivo);
-        assert(verificarBalanceo(pila) == true);
+        assert(verificarBalanceo(pila));
         
         
         printf("Todas las pruebas pasaron correctamente.\n");
@@ -51,11 +51,13 @@ void test_liberar(pila_t *pila)
 int main() 
 {
     pila_t *pila= (pila_t*)malloc(sizeof(pila_t));
+
     printf("Comenzando...\n");
 
     test_verificarBalanceo(pila);
     test_liberar(pila);
     free(pila);
+    
     printf("\nfin");
     return 0;
 }
